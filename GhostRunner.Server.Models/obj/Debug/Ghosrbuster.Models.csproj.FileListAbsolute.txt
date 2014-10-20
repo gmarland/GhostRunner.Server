@@ -1,0 +1,9 @@
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\Ghosrbuster.Models.dll.config
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\Ghosrbuster.Models.dll
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\Ghosrbuster.Models.pdb
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\EntityFramework.dll
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\EntityFramework.xml
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\Ghosrbuster.Models.dll
+D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\Ghosrbuster.Models.pdb

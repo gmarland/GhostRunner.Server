@@ -1,0 +1,9 @@
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\bin\Debug\GhostRunner.Server.DAL.Interface.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\bin\Debug\GhostRunner.Server.DAL.Interface.pdb
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\bin\Debug\GhostRunner.Server.Models.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\bin\Debug\EntityFramework.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\bin\Debug\GhostRunner.Server.Models.pdb
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\bin\Debug\EntityFramework.xml
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\obj\Debug\GhostRunner.Server.DAL.Interface.csprojResolveAssemblyReference.cache
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\obj\Debug\GhostRunner.Server.DAL.Interface.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\obj\Debug\GhostRunner.Server.DAL.Interface.pdb

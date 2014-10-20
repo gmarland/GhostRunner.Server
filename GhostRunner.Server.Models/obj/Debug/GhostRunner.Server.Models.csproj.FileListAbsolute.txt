@@ -1,0 +1,10 @@
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\GhostRunner.Server.Models.dll
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\GhostRunner.Server.Models.pdb
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\EntityFramework.dll
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\EntityFramework.xml
+D:\Src\Ghostbuster\Ghosrbuster.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.Migrations.InitialCreate.resources
+D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.csproj.GenerateResource.Cache
+D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.dll
+D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.pdb

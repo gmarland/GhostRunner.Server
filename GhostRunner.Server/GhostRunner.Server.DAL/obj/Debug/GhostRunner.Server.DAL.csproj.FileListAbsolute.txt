@@ -1,0 +1,15 @@
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\GhostRunner.Server.DAL.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\GhostRunner.Server.DAL.pdb
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\EntityFramework.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\GhostRunner.Server.DAL.Interface.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\GhostRunner.Server.Models.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\log4net.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\GhostRunner.Server.Models.pdb
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\GhostRunner.Server.DAL.Interface.pdb
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\EntityFramework.xml
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\bin\Debug\log4net.xml
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\obj\Debug\GhostRunner.Server.DAL.csprojResolveAssemblyReference.cache
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\obj\Debug\GhostRunner.Server.DAL.dll
+D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL\obj\Debug\GhostRunner.Server.DAL.pdb
