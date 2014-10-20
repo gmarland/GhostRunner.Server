@@ -1,4 +1,4 @@
 GhostRunner.Server
 ==================
 
-Server service that runs phatomjs scripts
+Server service that runs phantomjs scripts
