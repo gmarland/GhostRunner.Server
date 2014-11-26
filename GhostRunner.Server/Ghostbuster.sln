@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostRunner.Server", "GhostRunner.Server.csproj", "{2E3D1BF2-56A0-418E-B52F-D2BF9BC644CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostRunner.Server.Models", "..\Ghosrbuster.Models\GhostRunner.Server.Models.csproj", "{A69A6459-3F1E-4927-957A-A1EF4416AD4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostRunner.Server.Models", "..\GhostRunner.Server.Models\GhostRunner.Server.Models.csproj", "{A69A6459-3F1E-4927-957A-A1EF4416AD4A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostRunner.Server.DAL", "GhostRunner.Server.DAL\GhostRunner.Server.DAL.csproj", "{5090CD50-43C7-47BE-8063-2175C51AE693}"
 EndProject

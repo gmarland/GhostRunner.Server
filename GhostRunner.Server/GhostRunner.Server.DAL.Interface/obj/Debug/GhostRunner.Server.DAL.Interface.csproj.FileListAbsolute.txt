@@ -7,3 +7,12 @@ D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\bin\Debug\EntityFramewo
 D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\obj\Debug\GhostRunner.Server.DAL.Interface.csprojResolveAssemblyReference.cache
 D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\obj\Debug\GhostRunner.Server.DAL.Interface.dll
 D:\Src\Ghostbuster\Ghostbuster\Ghostbuster.DAL.Interface\obj\Debug\GhostRunner.Server.DAL.Interface.pdb
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.DAL.Interface\bin\Debug\GhostRunner.Server.DAL.Interface.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.DAL.Interface\bin\Debug\GhostRunner.Server.DAL.Interface.pdb
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.DAL.Interface\bin\Debug\GhostRunner.Server.Models.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.DAL.Interface\bin\Debug\EntityFramework.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.DAL.Interface\bin\Debug\GhostRunner.Server.Models.pdb
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.DAL.Interface\bin\Debug\EntityFramework.xml
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.DAL.Interface\obj\Debug\GhostRunner.Server.DAL.Interface.csprojResolveAssemblyReference.cache
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.DAL.Interface\obj\Debug\GhostRunner.Server.DAL.Interface.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.DAL.Interface\obj\Debug\GhostRunner.Server.DAL.Interface.pdb

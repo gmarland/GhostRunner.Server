@@ -47,7 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ghosrbuster.Models\GhostRunner.Server.Models.csproj">
+    <ProjectReference Include="..\GhostRunner.Server.Models\GhostRunner.Server.Models.csproj">
       <Project>{a69a6459-3f1e-4927-957a-a1ef4416ad4a}</Project>
       <Name>GhostRunner.Server.Models</Name>
     </ProjectReference>
