@@ -11,5 +11,8 @@
     <Setting Name="CommandWorkingDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\CmdWindow</Value>
     </Setting>
+    <Setting Name="CommandWindowMinuteTimeout" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

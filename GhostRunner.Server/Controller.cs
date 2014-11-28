@@ -16,6 +16,10 @@ namespace GhostRunner.Server
 
         public Controller()
         {
+            if (Properties.Settings.Default.CommandWindowMinuteTimeout != null) 
+
+            _log.Debug("Setting command timeout to " + TaskService.CommandWindowMinuteTimeout);
+
             TaskService.PhantomJSLocation = Properties.Settings.Default.PhantomJSLocation;
 
             _log.Debug("Setting PhantomJS location to " + TaskService.PhantomJSLocation);
