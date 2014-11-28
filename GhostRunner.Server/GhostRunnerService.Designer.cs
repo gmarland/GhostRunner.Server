@@ -1,6 +1,6 @@
 ﻿namespace GhostRunner.Server
 {
-    partial class GhostRunner
+    partial class GhostRunnerService
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             // 
-            // GhostRunner
+            // GhostRunnerService
             // 
             this.ServiceName = "GhostRunner";
 

@@ -49,3 +49,6 @@ C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRu
 C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\obj\Debug\GhostRunner.Server.csprojResolveAssemblyReference.cache
 C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\obj\Debug\GhostRunner.Server.ProjectInstaller.resources
 C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\obj\Debug\GhostRunner.Server.csproj.GenerateResource.Cache
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\obj\Debug\GhostRunner.Server.ProjectInstaller.resources
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\obj\Debug\GhostRunner.Server.csproj.GenerateResource.Cache
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\obj\Debug\GhostRunner.Server.GhostRunnerService.resources
