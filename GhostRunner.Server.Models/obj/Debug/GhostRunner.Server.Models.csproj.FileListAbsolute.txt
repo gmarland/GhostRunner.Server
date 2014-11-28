@@ -8,3 +8,13 @@ D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.Migrat
 D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.csproj.GenerateResource.Cache
 D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.dll
 D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.pdb
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\bin\Debug\GhostRunner.Server.Models.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\bin\Debug\GhostRunner.Server.Models.pdb
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\bin\Debug\EntityFramework.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\bin\Debug\EntityFramework.xml
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\obj\Debug\GhostRunner.Server.Models.Migrations.InitialCreate.resources
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\obj\Debug\GhostRunner.Server.Models.csproj.GenerateResource.Cache
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\obj\Debug\GhostRunner.Server.Models.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\obj\Debug\GhostRunner.Server.Models.pdb

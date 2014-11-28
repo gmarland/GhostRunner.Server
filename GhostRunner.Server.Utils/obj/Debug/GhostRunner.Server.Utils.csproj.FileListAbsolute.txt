@@ -9,3 +9,14 @@ D:\Src\Ghostbuster\Ghostbuster.Utils\bin\Debug\EntityFramework.xml
 D:\Src\Ghostbuster\Ghostbuster.Utils\obj\Debug\GhostRunner.Server.Utils.csprojResolveAssemblyReference.cache
 D:\Src\Ghostbuster\Ghostbuster.Utils\obj\Debug\GhostRunner.Server.Utils.dll
 D:\Src\Ghostbuster\Ghostbuster.Utils\obj\Debug\GhostRunner.Server.Utils.pdb
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\bin\Debug\GhostRunner.Server.Utils.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\bin\Debug\GhostRunner.Server.Utils.pdb
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\bin\Debug\GhostRunner.Server.Models.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\bin\Debug\log4net.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\bin\Debug\EntityFramework.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\bin\Debug\GhostRunner.Server.Models.pdb
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\bin\Debug\log4net.xml
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\bin\Debug\EntityFramework.xml
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\obj\Debug\GhostRunner.Server.Utils.csprojResolveAssemblyReference.cache
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\obj\Debug\GhostRunner.Server.Utils.dll
+D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\obj\Debug\GhostRunner.Server.Utils.pdb
