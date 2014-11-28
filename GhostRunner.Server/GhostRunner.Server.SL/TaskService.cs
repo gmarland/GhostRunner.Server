@@ -13,6 +13,7 @@ namespace GhostRunner.Server.SL
     public class TaskService
     {
         public static String PhantomJSLocation = String.Empty;
+        public static int CommandWindowMinuteTimeout = 1;
         public static String ProcessingLocation = String.Empty;
         public static String CommandWorkingDirectory = String.Empty;
 
@@ -45,13 +46,25 @@ namespace GhostRunner.Server.SL
 
         public void ProcessTask(Task task)
         {
+            _log.Debug("Writing out JavaScript script");
+
             String scriptLocation = PhantomJSHelper.WriteJSScript(ProcessingLocation, task);
 
-            String processResults = CommandWindowHelper.ProcessCommand(CommandWorkingDirectory, "\"" + PhantomJSLocation.TrimEnd(new char[] { '\\' }) + "\\phantomjs.exe\" " + "\"" + scriptLocation + "\"");
+            _log.Debug("JavaScript script wrote out to " + scriptLocation);
+
+            _log.Debug("Reading in built JavaScript file");
 
             String phantomJSScript = PhantomJSHelper.ReadJSScript(scriptLocation);
 
+            _log.Debug("Processing JavaScript command");
+
+            String processResults = CommandWindowHelper.ProcessCommand(CommandWorkingDirectory, CommandWindowMinuteTimeout, "\"" + PhantomJSLocation.TrimEnd(new char[] { '\\' }) + "\\phantomjs.exe\" " + "\"" + scriptLocation + "\"");
+
+            _log.Debug("Setting up processing at location " + processResults);
+
             _initializationTaskDataAccess.SetTaskComplete(task.ID, Status.Completed, processResults, phantomJSScript);
+
+            _log.Debug("Deleting JavaScript file");
 
             PhantomJSHelper.DeleteJSScript(scriptLocation);    
         }
