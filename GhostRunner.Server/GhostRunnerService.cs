@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace GhostRunner.Server
 {
-    partial class GhostRunnerService : ServiceBase
+    partial class GhostRunner : ServiceBase
     {
-        public GhostRunnerService()
+        public GhostRunner()
         {
             InitializeComponent();
         }
