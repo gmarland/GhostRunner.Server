@@ -36,3 +36,4 @@ D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.S
 D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.SL\obj\Debug\GhostRunner.Server.SL.csprojResolveAssemblyReference.cache
 D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.SL\obj\Debug\GhostRunner.Server.SL.dll
 D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.SL\obj\Debug\GhostRunner.Server.SL.pdb
+C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.SL\obj\Debug\GhostRunner.Server.SL.csprojResolveAssemblyReference.cache
