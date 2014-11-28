@@ -45,3 +45,7 @@ D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\bin\Debug\log4net.xm
 D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\bin\Debug\GhostRunner.Server.DAL.pdb
 D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\bin\Debug\GhostRunner.Server.Utils.pdb
 D:\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\obj\Debug\GhostRunner.Server.csprojResolveAssemblyReference.cache
+C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\bin\Debug\GhostRunner.Server.exe.config
+C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\obj\Debug\GhostRunner.Server.csprojResolveAssemblyReference.cache
+C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\obj\Debug\GhostRunner.Server.ProjectInstaller.resources
+C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server\obj\Debug\GhostRunner.Server.csproj.GenerateResource.Cache

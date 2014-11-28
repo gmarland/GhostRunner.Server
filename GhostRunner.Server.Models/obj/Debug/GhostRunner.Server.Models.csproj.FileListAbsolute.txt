@@ -8,3 +8,6 @@ D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.Migrat
 D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.csproj.GenerateResource.Cache
 D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.dll
 D:\Src\Ghostbuster\Ghosrbuster.Models\obj\Debug\GhostRunner.Server.Models.pdb
+C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\obj\Debug\GhostRunner.Server.Models.csprojResolveAssemblyReference.cache
+C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\obj\Debug\GhostRunner.Server.Models.Migrations.InitialCreate.resources
+C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Models\obj\Debug\GhostRunner.Server.Models.csproj.GenerateResource.Cache

@@ -9,3 +9,4 @@ D:\Src\Ghostbuster\Ghostbuster.Utils\bin\Debug\EntityFramework.xml
 D:\Src\Ghostbuster\Ghostbuster.Utils\obj\Debug\GhostRunner.Server.Utils.csprojResolveAssemblyReference.cache
 D:\Src\Ghostbuster\Ghostbuster.Utils\obj\Debug\GhostRunner.Server.Utils.dll
 D:\Src\Ghostbuster\Ghostbuster.Utils\obj\Debug\GhostRunner.Server.Utils.pdb
+C:\Users\gmarland\Documents\GitHub\GhostRunner.Server\GhostRunner.Server\GhostRunner.Server.Utils\obj\Debug\GhostRunner.Server.Utils.csprojResolveAssemblyReference.cache
