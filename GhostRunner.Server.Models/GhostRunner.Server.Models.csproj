@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DateHelper.cs" />
     <Compile Include="GhostRunnerContext.cs" />
     <Compile Include="IContext.cs" />
     <Compile Include="IScheduleItem.cs" />
