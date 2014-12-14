@@ -6,14 +6,12 @@ using System.Text;
 
 namespace GhostRunner.Server.DAL.Interface
 {
-    public interface IInitializationTaskDataAccess
+    public interface ITaskDataAccess
     {
         Task GetNextUnprocessed();
 
-        Boolean UpdateTaskLog(int taskId, String log);
-
         Boolean SetTaskProcessing(int taskId);
 
-        Boolean SetTaskComplete(int taskId, Status status, String log, String script);
+        Boolean SetTaskComplete(int taskId, Status status);
     }
 }

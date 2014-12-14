@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GhostRunner.Server.Models
 {
-    public enum Status
+    public enum ItemType
     {
-        Unprocessed,
-        Processing,
-        Completed,
-        Errored,
-        Unknown
+        Sequence,
+        Script,
+        SequenceScript
     }
 }

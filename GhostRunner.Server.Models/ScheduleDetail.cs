@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GhostRunner.Server.Models
 {
-    public class TaskParameter
+    public class ScheduleDetail
     {
         [Required]
         public int ID { get; set; }
@@ -15,9 +15,8 @@ namespace GhostRunner.Server.Models
         [Required]
         public String Name { get; set; }
 
-        [Required]
         public String Value { get; set; }
 
-        public virtual Task Task { get; set; }
+        public virtual Schedule Schedule { get; set; }
     }
 }

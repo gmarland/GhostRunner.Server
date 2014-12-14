@@ -39,7 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IInitializationTaskDataAccess.cs" />
+    <Compile Include="ITaskDataAccess.cs" />
+    <Compile Include="ITaskScriptDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

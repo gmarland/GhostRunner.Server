@@ -13,15 +13,15 @@ namespace GhostRunner.Server.Utils
     {
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public static String WriteJSScript(String processingLocation, Task task)
+        public static String WriteJSScript(String processingLocation, TaskScript taskScript)
         {
-            String outputScriptLocation = Path.Combine(processingLocation.TrimEnd(new char[] { '\\' }), task.ExternalId + ".js");
+            String outputScriptLocation = Path.Combine(processingLocation.TrimEnd(new char[] { '\\' }), taskScript.ID + ".js");
 
-            String parameterizedScript = task.Content;
+            String parameterizedScript = taskScript.Content;
 
-            foreach (TaskParameter taskParameter in task.TaskParameters)
+            foreach (TaskScriptParameter taskScriptParameter in taskScript.TaskScriptParameters)
             {
-                parameterizedScript = Regex.Replace(parameterizedScript, "\\[" + taskParameter.Name + "\\]", taskParameter.Value);
+                parameterizedScript = Regex.Replace(parameterizedScript, "\\[" + taskScriptParameter.Name + "\\]", taskScriptParameter.Value);
             }
 
             try
@@ -32,39 +32,9 @@ namespace GhostRunner.Server.Utils
             }
             catch (Exception ex)
             {
-                _log.Error("WriteJSScript(" + processingLocation + ", " + task.ID + "): Error writing javasript script", ex);
+                _log.Error("WriteJSScript(" + processingLocation + ", " + taskScript.ID + "): Error writing javasript script", ex);
 
                 return String.Empty;
-            }
-        }
-
-        public static String ReadJSScript(String javascriptLocation)
-        {
-            try
-            {
-                return File.ReadAllText(javascriptLocation);
-            }
-            catch (Exception ex)
-            {
-                _log.Error("ReadJSScript(" + javascriptLocation + "): Error reading javasript script", ex);
-
-                return String.Empty;
-            }
-        }
-
-        public static Boolean DeleteJSScript(String javascriptLocation)
-        {
-            try
-            {
-                File.Delete(javascriptLocation);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _log.Error("DeleteJSScript(" + javascriptLocation + "): Error deleting javasript script", ex);
-
-                return false;
             }
         }
     }

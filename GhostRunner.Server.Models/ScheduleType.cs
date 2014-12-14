@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GhostRunner.Server.Models
 {
-    public enum Status
+    public enum ScheduleType
     {
-        Unprocessed,
-        Processing,
-        Completed,
-        Errored,
-        Unknown
+        Triggered,
+        Monthly,
+        Weekly,
+        Daily
     }
 }

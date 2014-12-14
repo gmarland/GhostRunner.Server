@@ -5,6 +5,7 @@ using GhostRunner.Server.Utils;
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -17,26 +18,28 @@ namespace GhostRunner.Server.SL
         public static String ProcessingLocation = String.Empty;
         public static String CommandWorkingDirectory = String.Empty;
 
-        private GhostRunnerContext _context;
-
-        private IInitializationTaskDataAccess _initializationTaskDataAccess;
+        private ITaskDataAccess _taskDataAccess;
+        private ITaskScriptDataAccess _taskScriptDataAccess;
 
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public TaskService()
         {
-            _context = new GhostRunnerContext("DatabaseConnectionString");
+            InitializeDataAccess(new GhostRunnerContext("DatabaseConnectionString"));
+        }
 
-            _initializationTaskDataAccess = new InitializationTaskDataAccess(_context);
+        public TaskService(IContext context)
+        {
+            InitializeDataAccess(context);
         }
 
         public Task GetNextTask()
         {
-            Task task = _initializationTaskDataAccess.GetNextUnprocessed();
+            Task task = _taskDataAccess.GetNextUnprocessed();
 
             if (task != null)
             {
-                Boolean started = _initializationTaskDataAccess.SetTaskProcessing(task.ID);
+                Boolean started = _taskDataAccess.SetTaskProcessing(task.ID);
 
                 if (started) return task;
                 else return null;
@@ -46,15 +49,39 @@ namespace GhostRunner.Server.SL
 
         public void ProcessTask(Task task)
         {
+            foreach (TaskScript taskScript in task.TaskScripts)
+            {
+                processTaskScript(task.ExternalId, taskScript);
+            }
+
+            _taskDataAccess.SetTaskComplete(task.ID, Status.Completed);
+
+            _log.Debug("Deleting processing location");
+
+            int tryCount = 5000;
+
+            for (int i = 0; i < tryCount; i++)
+            {
+                try
+                { 
+                    Directory.Delete(ProcessingLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.ExternalId, true);
+
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    _log.Debug("Unable to delete processing location", ex);
+                }
+            }
+        }
+
+        private void processTaskScript(String taskId, TaskScript taskScript)
+        {
             _log.Debug("Writing out JavaScript script");
 
-            String scriptLocation = PhantomJSHelper.WriteJSScript(ProcessingLocation, task);
+            String scriptLocation = PhantomJSHelper.WriteJSScript(ProcessingLocation.TrimEnd(new char[] { '\\' }) + "\\" + taskId, taskScript);
 
             _log.Debug("JavaScript script wrote out to " + scriptLocation);
-
-            _log.Debug("Reading in built JavaScript file");
-
-            String phantomJSScript = PhantomJSHelper.ReadJSScript(scriptLocation);
 
             _log.Debug("Processing JavaScript command");
 
@@ -62,11 +89,17 @@ namespace GhostRunner.Server.SL
 
             _log.Debug("Setting up processing at location " + processResults);
 
-            _initializationTaskDataAccess.SetTaskComplete(task.ID, Status.Completed, processResults, phantomJSScript);
-
-            _log.Debug("Deleting JavaScript file");
-
-            PhantomJSHelper.DeleteJSScript(scriptLocation);    
+            _taskScriptDataAccess.UpdateTaskScriptLog(taskScript.ID, processResults);
         }
+
+        #region Private Methods
+
+        private void InitializeDataAccess(IContext context)
+        {
+            _taskDataAccess = new TaskDataAccess(context);
+            _taskScriptDataAccess = new TaskScriptDataAccess(context);
+        }
+
+        #endregion
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GhostRunner.Server.Models
 {
@@ -18,17 +17,14 @@ namespace GhostRunner.Server.Models
         [Required(ErrorMessage = " * Required")]
         public String Name { get; set; }
 
-        public String Description { get; set; }
-
-        [Required]
-        public String Content { get; set; }
-
         [Required]
         public Status Status { get; set; }
 
-        public String Log { get; set; }
+        [Required]
+        public int ParentId { get; set; }
 
-        public String PhantomScript { get; set; }
+        [Required]
+        public ItemType ParentType { get; set; }
 
         [Required]
         public DateTime Created { get; set; }
@@ -37,10 +33,10 @@ namespace GhostRunner.Server.Models
 
         public DateTime? Completed { get; set; }
 
-        public virtual Script Script { get; set; }
-
         public virtual User User { get; set; }
 
-        public virtual ICollection<TaskParameter> TaskParameters { get; set; }
+        public virtual Project Project { get; set; }
+
+        public virtual ICollection<TaskScript> TaskScripts { get; set; }
     }
 }

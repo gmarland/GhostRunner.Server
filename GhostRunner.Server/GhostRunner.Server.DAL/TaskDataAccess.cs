@@ -8,13 +8,13 @@ using System.Text;
 
 namespace GhostRunner.Server.DAL
 {
-    public class InitializationTaskDataAccess : IInitializationTaskDataAccess
+    public class TaskDataAccess : ITaskDataAccess
     {
-        protected GhostRunnerContext _context;
+        protected IContext _context;
 
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public InitializationTaskDataAccess(GhostRunnerContext context)
+        public TaskDataAccess(IContext context)
         {
             _context = context;
         }
@@ -41,45 +41,6 @@ namespace GhostRunner.Server.DAL
             else
             {
                 return null;
-            }
-        }
-
-        public Boolean UpdateTaskLog(int taskId, String log)
-        {
-            Task task = null;
-
-            try
-            {
-                task = _context.Tasks.SingleOrDefault(it => it.ID == taskId);
-            }
-            catch (Exception ex)
-            {
-                _log.Error("UpdateTaskLog(" + taskId + "): An error occured retrieving task", ex);
-
-                return false;
-            }
-
-            if (task != null)
-            {
-                try
-                {
-                    task.Log += log;
-                    Save();
-
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    _log.Error("UpdateTaskLog(" + taskId + "): An error occured saving task", ex);
-
-                    return false;
-                }
-            }
-            else
-            {
-                _log.Info("UpdateTaskLog(" + taskId + "): unable to retrieve task");
-
-                return false;
             }
         }
 
@@ -123,7 +84,7 @@ namespace GhostRunner.Server.DAL
             }
         }
 
-        public Boolean SetTaskComplete(int taskId, Status status, String log, String script)
+        public Boolean SetTaskComplete(int taskId, Status status)
         {
             Task task = null;
 
@@ -143,8 +104,6 @@ namespace GhostRunner.Server.DAL
                 try
                 {
                     task.Status = status;
-                    task.Log = log;
-                    task.PhantomScript = script;
                     task.Completed = DateTime.UtcNow;
                     Save();
 

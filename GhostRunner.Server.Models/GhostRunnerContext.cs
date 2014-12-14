@@ -5,10 +5,11 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GhostRunner.Server.Models
 {
-    public class GhostRunnerContext : DbContext
+    public class GhostRunnerContext : DbContext, IContext
     {
         public GhostRunnerContext(string connectionString)
             : base(connectionString)
@@ -16,16 +17,28 @@ namespace GhostRunner.Server.Models
             Configuration.AutoDetectChangesEnabled = true;
             Database.SetInitializer<GhostRunnerContext>(new MigrateDatabaseToLatestVersion<GhostRunnerContext, Configuration>(connectionString));
         }
+        
+        public IDbSet<User> Users { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        public IDbSet<Project> Projects { get; set; }
 
-        public DbSet<Project> Projects { get; set; }
+        public IDbSet<Sequence> Sequences { get; set; }
 
-        public DbSet<Script> Scripts { get; set; }
+        public IDbSet<SequenceScript> SequenceScripts { get; set; }
 
-        public DbSet<Task> Tasks { get; set; }
+        public IDbSet<ScheduleDetail> ScheduleDetails { get; set; }
 
-        public DbSet<TaskParameter> TaskParameters { get; set; }
+        public IDbSet<Script> Scripts { get; set; }
+
+        public IDbSet<Task> Tasks { get; set; }
+
+        public IDbSet<TaskScript> TaskScripts { get; set; }
+
+        public IDbSet<TaskScriptParameter> TaskScriptParameters { get; set; }
+
+        public IDbSet<Schedule> Schedules { get; set; }
+
+        public IDbSet<ScheduleParameter> ScheduleParameters { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
