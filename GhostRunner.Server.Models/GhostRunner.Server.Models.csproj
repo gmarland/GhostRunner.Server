@@ -50,9 +50,9 @@
     <Compile Include="IContext.cs" />
     <Compile Include="IScheduleItem.cs" />
     <Compile Include="ItemType.cs" />
-    <Compile Include="Migrations\201410200131063_InitialCreate.cs" />
-    <Compile Include="Migrations\201410200131063_InitialCreate.Designer.cs">
-      <DependentUpon>201410200131063_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201412161559399_Initial.cs" />
+    <Compile Include="Migrations\201412161559399_Initial.Designer.cs">
+      <DependentUpon>201412161559399_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GhostRunnerContextFactory.cs" />
@@ -78,8 +78,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201410200131063_InitialCreate.resx">
-      <DependentUpon>201410200131063_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201412161559399_Initial.resx">
+      <DependentUpon>201412161559399_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

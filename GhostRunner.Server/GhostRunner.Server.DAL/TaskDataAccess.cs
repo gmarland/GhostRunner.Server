@@ -21,11 +21,11 @@ namespace GhostRunner.Server.DAL
 
         public Task GetNextUnprocessed()
         {
-            List<Task> initializationTasks = new List<Task>();
+            List<Task> tasks = new List<Task>();
 
             try
             {
-                initializationTasks = _context.Tasks.Where(it => it.Status == Status.Unprocessed).ToList();
+                tasks = _context.Tasks.Where(it => it.Status == Status.Unprocessed).ToList();
             }
             catch (Exception ex)
             {
@@ -34,9 +34,11 @@ namespace GhostRunner.Server.DAL
                 return null;
             }
 
-            if (initializationTasks.Count > 0)
+            _log.Debug(tasks.Count + " tasks found");
+
+            if (tasks.Count > 0)
             {
-                return initializationTasks.OrderBy(it => it.Created).First();
+                return tasks.OrderBy(it => it.Created).First();
             }
             else
             {

@@ -35,6 +35,8 @@ namespace GhostRunner.Server.SL
 
         public Task GetNextTask()
         {
+            _log.Debug("Getting the next unprocessed task");
+
             Task task = _taskDataAccess.GetNextUnprocessed();
 
             if (task != null)

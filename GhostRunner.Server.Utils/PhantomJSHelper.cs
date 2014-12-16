@@ -15,6 +15,8 @@ namespace GhostRunner.Server.Utils
 
         public static String WriteJSScript(String processingLocation, TaskScript taskScript)
         {
+            if (!Directory.Exists(processingLocation)) Directory.CreateDirectory(processingLocation);
+
             String outputScriptLocation = Path.Combine(processingLocation.TrimEnd(new char[] { '\\' }), taskScript.ID + ".js");
 
             String parameterizedScript = taskScript.Content;
