@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace GhostRunner.Server.DAL.Interface
 {
-    public interface ITaskScriptDataAccess
+    public interface ITaskScriptParameterDataAccess
     {
-        TaskScript Get(int taskScriptId);
-
-        TaskScript Insert(TaskScript taskScript);
-
-        Boolean UpdateTaskScriptLog(int taskId, String log);
+        TaskScriptParameter Insert(TaskScriptParameter taskParameter);
     }
 }

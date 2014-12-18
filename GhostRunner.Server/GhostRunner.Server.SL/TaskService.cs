@@ -77,6 +77,8 @@ namespace GhostRunner.Server.SL
             }
         }
 
+        #region Private Methods
+
         private void processTaskScript(String taskId, TaskScript taskScript)
         {
             _log.Debug("Writing out JavaScript script");
@@ -93,8 +95,6 @@ namespace GhostRunner.Server.SL
 
             _taskScriptDataAccess.UpdateTaskScriptLog(taskScript.ID, processResults);
         }
-
-        #region Private Methods
 
         private void InitializeDataAccess(IContext context)
         {

@@ -62,9 +62,9 @@ namespace GhostRunner.Server.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public string CommandWindowMinuteTimeout {
+        public int CommandWindowMinuteTimeout {
             get {
-                return ((string)(this["CommandWindowMinuteTimeout"]));
+                return ((int)(this["CommandWindowMinuteTimeout"]));
             }
             set {
                 this["CommandWindowMinuteTimeout"] = value;

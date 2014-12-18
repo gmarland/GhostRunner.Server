@@ -20,6 +20,37 @@ namespace GhostRunner.Server.DAL
             _context = context;
         }
 
+        public TaskScript Get(int taskScriptId)
+        {
+            try
+            {
+                return _context.TaskScripts.SingleOrDefault(ts => ts.ID == taskScriptId);
+            }
+            catch (Exception ex)
+            {
+                _log.Error("Get(): Unable to find task script", ex);
+
+                return null;
+            }
+        }
+
+        public TaskScript Insert(TaskScript taskScript)
+        {
+            try
+            {
+                _context.TaskScripts.Add(taskScript);
+                Save();
+
+                return taskScript;
+            }
+            catch (Exception ex)
+            {
+                _log.Error("Insert(): Unable to add new task script", ex);
+
+                return null;
+            }
+        }
+
         public Boolean UpdateTaskScriptLog(int taskScriptId, string log)
         {
             TaskScript taskScript = null;

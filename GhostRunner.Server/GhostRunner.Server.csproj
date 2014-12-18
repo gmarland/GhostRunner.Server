@@ -55,7 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller.cs" />
+    <Compile Include="ScheduleController.cs" />
+    <Compile Include="TaskController.cs" />
     <Compile Include="GhostRunnerService.cs">
       <SubType>Component</SubType>
     </Compile>

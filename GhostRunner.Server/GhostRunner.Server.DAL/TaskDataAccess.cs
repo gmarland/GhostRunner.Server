@@ -46,6 +46,23 @@ namespace GhostRunner.Server.DAL
             }
         }
 
+        public Task Insert(Task task)
+        {
+            try
+            {
+                _context.Tasks.Add(task);
+                Save();
+
+                return task;
+            }
+            catch (Exception ex)
+            {
+                _log.Error("Insert(): Unable to add new task", ex);
+
+                return null;
+            }
+        }
+
         public Boolean SetTaskProcessing(int taskId)
         {
             Task task = null;

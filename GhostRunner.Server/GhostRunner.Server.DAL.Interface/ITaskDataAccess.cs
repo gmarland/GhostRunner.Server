@@ -13,5 +13,7 @@ namespace GhostRunner.Server.DAL.Interface
         Boolean SetTaskProcessing(int taskId);
 
         Boolean SetTaskComplete(int taskId, Status status);
+
+        Task Insert(Task initializationTask);
     }
 }

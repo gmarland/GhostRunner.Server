@@ -14,7 +14,11 @@ namespace GhostRunner.Server
 {
     partial class GhostRunnerService : ServiceBase
     {
-        private static Timer _timer;
+        private static Timer _taskTimer;
+        private static TaskController _taskController = null;
+
+        private static Timer _scheduleTimer;
+        private static ScheduleController _scheduleController = null;
 
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -24,37 +28,77 @@ namespace GhostRunner.Server
 
             _log.Debug("Service initialized");
 
-            _timer = new Timer();
-            _timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            _timer.Interval = 5000;
-            _timer.Enabled = true;
+            _taskTimer = new Timer();
+            _taskTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent_Task);
+            _taskTimer.Interval = 5000;
+            _taskTimer.Enabled = true;
 
-            _log.Debug("Timer set up");
+            _log.Debug("Task timer set up");
+
+            _scheduleTimer = new Timer();
+            _scheduleTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent_Schedule);
+            _scheduleTimer.Interval = 3000;
+            _scheduleTimer.Enabled = true;
+
+            _log.Debug("scheule timer set up");
         }
 
         protected override void OnStart(string[] args)
         {
-            _timer.Start();
+            _taskTimer.Start();
 
-            _log.Debug("Timer started");
+            _log.Debug("Task timer started");
+
+            _scheduleTimer.Start();
+
+            _log.Debug("Schedule timer started");
         }
 
         protected override void OnStop()
         {
-            _timer.Stop();
+            _taskTimer.Stop();
 
             _log.Debug("Timer stopped");
+
+            _scheduleTimer.Stop();
+
+            _log.Debug("Schedule timer stopped");
         }
 
-        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        private static void OnTimedEvent_Task(object source, ElapsedEventArgs e)
         {
-            _log.Debug("Setting up controller");
+            if (_taskController == null)
+            {
+                _log.Debug("Setting up task controller");
 
-            Controller controller = new Controller();
+                _taskController = new TaskController();
 
-            _log.Debug("Controller started");
+                _log.Debug("Task controller started");
 
-            controller.Start();
+                _taskController.ClaimTasks();
+
+                _log.Debug("clearing task controller");
+
+                _taskController = null;
+            }
+        }
+
+        private static void OnTimedEvent_Schedule(object source, ElapsedEventArgs e)
+        {
+            if (_scheduleController == null)
+            {
+                _log.Debug("Setting up schedule controller");
+
+                _scheduleController = new ScheduleController();
+
+                _log.Debug("Schedule controller started");
+
+                _scheduleController.ScheduleTasks();
+
+                _log.Debug("clearing schedule controller");
+
+                _scheduleController = null;
+            }
         }
     }
 }
