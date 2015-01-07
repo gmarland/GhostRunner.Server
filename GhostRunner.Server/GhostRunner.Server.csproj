@@ -91,7 +91,7 @@
       <Project>{a69a6459-3f1e-4927-957a-a1ef4416ad4a}</Project>
       <Name>GhostRunner.Server.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="GhostRunner.Server.SL\GhostRunner.Server.SL.csproj">
+    <ProjectReference Include="..\GhostRunner.Server.SL\GhostRunner.Server.SL.csproj">
       <Project>{bb79ac3e-0812-4f83-80bd-e0994c06ae02}</Project>
       <Name>GhostRunner.Server.SL</Name>
     </ProjectReference>

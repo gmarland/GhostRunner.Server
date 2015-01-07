@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BB79AC3E-0812-4F83-80BD-E0994C06AE02}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GhostRunner.Server.SL</RootNamespace>
+    <AssemblyName>GhostRunner.Server.SL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ScheduleService.cs" />
+    <Compile Include="TaskService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GhostRunner.Server.Models\GhostRunner.Server.Models.csproj">
+      <Project>{a69a6459-3f1e-4927-957a-a1ef4416ad4a}</Project>
+      <Name>GhostRunner.Server.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.Interface\GhostRunner.Server.Processor.Interface.csproj">
+      <Project>{f04550f9-a039-4b1b-be0f-bc5ef1f459f7}</Project>
+      <Name>GhostRunner.Server.Processor.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Utils\GhostRunner.Server.Utils.csproj">
+      <Project>{60cb19f6-e738-4e4d-9d8a-762874254c60}</Project>
+      <Name>GhostRunner.Server.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.DAL.Interface\GhostRunner.Server.DAL.Interface.csproj">
+      <Project>{901ce29b-ea98-4bea-a43e-2a05ffb2c7b9}</Project>
+      <Name>GhostRunner.Server.DAL.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.DAL\GhostRunner.Server.DAL.csproj">
+      <Project>{5090cd50-43c7-47be-8063-2175c51ae693}</Project>
+      <Name>GhostRunner.Server.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.Batch\GhostRunner.Server.Processor.CommandLine.csproj">
+      <Project>{43a5573e-7cf7-41a2-b078-5c37aced840e}</Project>
+      <Name>GhostRunner.Server.Processor.CommandLine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.Git\GhostRunner.Server.Processor.Git.csproj">
+      <Project>{639f129e-a95d-4574-b5e8-20d894c357c1}</Project>
+      <Name>GhostRunner.Server.Processor.Git</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.Grunt\GhostRunner.Server.Processor.Grunt.csproj">
+      <Project>{130ea2e2-7624-4d1e-a243-575b48429c7e}</Project>
+      <Name>GhostRunner.Server.Processor.Grunt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.Node\GhostRunner.Server.Processor.Node.csproj">
+      <Project>{41f79305-fba0-4456-a5cf-166ac3768cb8}</Project>
+      <Name>GhostRunner.Server.Processor.Node</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.PhantomJS\GhostRunner.Server.Processor.PhantomJS.csproj">
+      <Project>{37ead788-10f6-47c2-9e14-107f0ed1ee23}</Project>
+      <Name>GhostRunner.Server.Processor.PhantomJS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
