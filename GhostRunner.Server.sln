@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostRunner.Server.Processo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostRunner.Server.Processor.Git", "GhostRunner.Server.Processor.Git\GhostRunner.Server.Processor.Git.csproj", "{639F129E-A95D-4574-B5E8-20D894C357C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostRunner.Server.Processor.CommandLine", "GhostRunner.Server.Processor.Batch\GhostRunner.Server.Processor.CommandLine.csproj", "{43A5573E-7CF7-41A2-B078-5C37ACED840E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostRunner.Server.Processor.CommandLine", "GhostRunner.Server.Processor.CommandLine\GhostRunner.Server.Processor.CommandLine.csproj", "{43A5573E-7CF7-41A2-B078-5C37ACED840E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostRunner.Server.Processor.Grunt", "GhostRunner.Server.Processor.Grunt\GhostRunner.Server.Processor.Grunt.csproj", "{130EA2E2-7624-4D1E-A243-575B48429C7E}"
 EndProject

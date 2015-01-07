@@ -77,7 +77,7 @@
       <Project>{5090cd50-43c7-47be-8063-2175c51ae693}</Project>
       <Name>GhostRunner.Server.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GhostRunner.Server.Processor.Batch\GhostRunner.Server.Processor.CommandLine.csproj">
+    <ProjectReference Include="..\GhostRunner.Server.Processor.CommandLine\GhostRunner.Server.Processor.CommandLine.csproj">
       <Project>{43a5573e-7cf7-41a2-b078-5c37aced840e}</Project>
       <Name>GhostRunner.Server.Processor.CommandLine</Name>
     </ProjectReference>
