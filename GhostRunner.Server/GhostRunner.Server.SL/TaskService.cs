@@ -1,6 +1,12 @@
 ﻿using GhostRunner.Server.DAL;
 using GhostRunner.Server.DAL.Interface;
 using GhostRunner.Server.Models;
+using GhostRunner.Server.Processor.Batch;
+using GhostRunner.Server.Processor.Git;
+using GhostRunner.Server.Processor.Grunt;
+using GhostRunner.Server.Processor.Interface;
+using GhostRunner.Server.Processor.Node;
+using GhostRunner.Server.Processor.PhantomJS;
 using GhostRunner.Server.Utils;
 using log4net;
 using System;
@@ -13,10 +19,10 @@ namespace GhostRunner.Server.SL
 {
     public class TaskService
     {
+        public static String NodeLocation = String.Empty;
         public static String PhantomJSLocation = String.Empty;
-        public static int CommandWindowMinuteTimeout = 1;
+
         public static String ProcessingLocation = String.Empty;
-        public static String CommandWorkingDirectory = String.Empty;
 
         private ITaskDataAccess _taskDataAccess;
         private ITaskScriptDataAccess _taskScriptDataAccess;
@@ -51,49 +57,115 @@ namespace GhostRunner.Server.SL
 
         public void ProcessTask(Task task)
         {
-            foreach (TaskScript taskScript in task.TaskScripts)
+            String processingLocation = ProcessingLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.ExternalId + "\\";
+
+            try
             {
-                processTaskScript(task.ExternalId, taskScript);
+                foreach (TaskScript taskScript in task.TaskScripts)
+                {
+                    processTaskScript(processingLocation, task.ExternalId, taskScript);
+                }
             }
+            catch (Exception ex)
+            {
+                _log.Error("ProcessTask(): An error occured processing the task", ex);
+            }
+
+            _log.Debug("Setting task complete");
 
             _taskDataAccess.SetTaskComplete(task.ID, Status.Completed);
 
             _log.Debug("Deleting processing location");
 
             int tryCount = 5000;
+            Exception deleteError = null;
 
             for (int i = 0; i < tryCount; i++)
             {
                 try
-                { 
-                    Directory.Delete(ProcessingLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.ExternalId, true);
+                {
+                    DeleteDirectory(processingLocation);
 
+                    deleteError = null;
                     break;
                 }
                 catch (Exception ex)
                 {
-                    _log.Debug("Unable to delete processing location", ex);
+                    deleteError = ex;
                 }
             }
+
+            if (deleteError != null) _log.Error("Unable to delete processing location", deleteError);
+        }
+
+        public IList<Task> ClearHungTasks()
+        {
+            IList<Task> tasks = _taskDataAccess.GetProcessingTasks();
+
+            _log.Debug(tasks.Count + " processing tasks found");
+
+            IList<Task> returnTasks = new List<Task>();
+
+            foreach(Task task in tasks)
+            {
+                _log.Debug("Task ID " + task.ID + " processing for " + (DateTime.UtcNow - task.Started.Value).TotalHours + " hours");
+
+                if ((task.Started.HasValue) && ((DateTime.UtcNow - task.Started.Value).TotalHours > 4)) _taskDataAccess.SetTaskComplete(task.ID, Status.Errored);
+            }
+
+            return returnTasks;
         }
 
         #region Private Methods
 
-        private void processTaskScript(String taskId, TaskScript taskScript)
+        private void processTaskScript(String processingLocation, String taskId, TaskScript taskScript)
         {
-            _log.Debug("Writing out JavaScript script");
 
-            String scriptLocation = PhantomJSHelper.WriteJSScript(ProcessingLocation.TrimEnd(new char[] { '\\' }) + "\\" + taskId, taskScript);
+            IProcessor processor = null;
 
-            _log.Debug("JavaScript script wrote out to " + scriptLocation);
+            switch (taskScript.Type)
+            {
+                case ScriptType.Git:
+                    processor = new GitProcessor(processingLocation, taskScript);
+                    break;
+                case ScriptType.CommandLine:
+                    processor = new CommandLineProcessor(processingLocation, NodeLocation, taskScript);
+                    break;
+                case ScriptType.Node:
+                    processor = new NodeProcessor(processingLocation, NodeLocation, taskScript);
+                    break;
+                case ScriptType.Grunt:
+                    processor = new GruntProcessor(processingLocation, NodeLocation, taskScript);
+                    break;
+                case ScriptType.PhantomJS:
+                    processor = new PhantomJSProcessor(processingLocation, PhantomJSLocation, taskScript);
+                    break;
+            }
 
-            _log.Debug("Processing JavaScript command");
+            String processResults = String.Empty;
 
-            String processResults = CommandWindowHelper.ProcessCommand(CommandWorkingDirectory, CommandWindowMinuteTimeout, "\"" + PhantomJSLocation.TrimEnd(new char[] { '\\' }) + "\\phantomjs.exe\" " + "\"" + scriptLocation + "\"");
-
-            _log.Debug("Setting up processing at location " + processResults);
+            if (processor != null) processResults = processor.Process();
 
             _taskScriptDataAccess.UpdateTaskScriptLog(taskScript.ID, processResults);
+        }
+
+        private void DeleteDirectory(string target_dir)
+        {
+            string[] files = Directory.GetFiles(target_dir);
+            string[] dirs = Directory.GetDirectories(target_dir);
+
+            foreach (string file in files)
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                DeleteDirectory(dir);
+            }
+
+            Directory.Delete(target_dir, false);
         }
 
         private void InitializeDataAccess(IContext context)

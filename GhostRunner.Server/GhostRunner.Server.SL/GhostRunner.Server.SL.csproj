@@ -61,6 +61,10 @@
       <Project>{a69a6459-3f1e-4927-957a-a1ef4416ad4a}</Project>
       <Name>GhostRunner.Server.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\GhostRunner.Server.Processor.Interface\GhostRunner.Server.Processor.Interface.csproj">
+      <Project>{f04550f9-a039-4b1b-be0f-bc5ef1f459f7}</Project>
+      <Name>GhostRunner.Server.Processor.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\GhostRunner.Server.Utils\GhostRunner.Server.Utils.csproj">
       <Project>{60cb19f6-e738-4e4d-9d8a-762874254c60}</Project>
       <Name>GhostRunner.Server.Utils</Name>
@@ -72,6 +76,26 @@
     <ProjectReference Include="..\GhostRunner.Server.DAL\GhostRunner.Server.DAL.csproj">
       <Project>{5090cd50-43c7-47be-8063-2175c51ae693}</Project>
       <Name>GhostRunner.Server.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.Batch\GhostRunner.Server.Processor.CommandLine.csproj">
+      <Project>{43a5573e-7cf7-41a2-b078-5c37aced840e}</Project>
+      <Name>GhostRunner.Server.Processor.CommandLine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.Git\GhostRunner.Server.Processor.Git.csproj">
+      <Project>{639f129e-a95d-4574-b5e8-20d894c357c1}</Project>
+      <Name>GhostRunner.Server.Processor.Git</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.Grunt\GhostRunner.Server.Processor.Grunt.csproj">
+      <Project>{130ea2e2-7624-4d1e-a243-575b48429c7e}</Project>
+      <Name>GhostRunner.Server.Processor.Grunt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.Node\GhostRunner.Server.Processor.Node.csproj">
+      <Project>{41f79305-fba0-4456-a5cf-166ac3768cb8}</Project>
+      <Name>GhostRunner.Server.Processor.Node</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostRunner.Server.Processor.PhantomJS\GhostRunner.Server.Processor.PhantomJS.csproj">
+      <Project>{37ead788-10f6-47c2-9e14-107f0ed1ee23}</Project>
+      <Name>GhostRunner.Server.Processor.PhantomJS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

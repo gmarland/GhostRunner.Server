@@ -10,20 +10,15 @@ namespace GhostRunner.Server
 {
     public class ScheduleController
     {
-        ScheduleService _scheduleService;
-
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        public ScheduleController()
-        {
-            _scheduleService = new ScheduleService();
-        }
 
         public void ScheduleTasks()
         {
+            ScheduleService scheduleService = new ScheduleService();
+
             _log.Debug("Scheduling tasks");
 
-            _scheduleService.ScheduleTasks();
+            scheduleService.ScheduleTasks();
         }
     }
 }

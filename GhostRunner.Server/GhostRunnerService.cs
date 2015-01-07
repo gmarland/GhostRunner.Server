@@ -14,6 +14,8 @@ namespace GhostRunner.Server
 {
     partial class GhostRunnerService : ServiceBase
     {
+        private static Boolean _processingTasks = false;
+
         private static Timer _taskTimer;
         private static TaskController _taskController = null;
 
@@ -67,19 +69,28 @@ namespace GhostRunner.Server
 
         private static void OnTimedEvent_Task(object source, ElapsedEventArgs e)
         {
-            if (_taskController == null)
+            if (!_processingTasks)
             {
-                _log.Debug("Setting up task controller");
+                _processingTasks = true;
 
-                _taskController = new TaskController();
+                if (_taskController == null)
+                {
+                    _log.Debug("Setting up task controller");
 
-                _log.Debug("Task controller started");
+                    _taskController = new TaskController();
 
-                _taskController.ClaimTasks();
+                    _log.Debug("Task controller started");
 
-                _log.Debug("clearing task controller");
+                    _taskController.ClaimTasks();
 
-                _taskController = null;
+                    _taskController.ClearTasks();
+
+                    _log.Debug("clearing task controller");
+
+                    _taskController = null;
+                }
+
+                _processingTasks = false;
             }
         }
 

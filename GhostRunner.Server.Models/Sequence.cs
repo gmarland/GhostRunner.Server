@@ -22,8 +22,6 @@ namespace GhostRunner.Server.Models
 
         public virtual Project Project { get; set; }
 
-        public virtual Script Script { get; set; }
-
         public virtual ICollection<SequenceScript> SequenceScripts { get; set; }
     }
 }

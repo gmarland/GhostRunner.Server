@@ -5,37 +5,36 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace GhostRunner.Server
 {
     public class TaskController
     {
-        TaskService _taskService;
-
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public TaskController()
         {
             ConfigureTaskService();
-
-            _taskService = new TaskService();
         }
 
         public void ClaimTasks()
         {
+            TaskService taskService = new TaskService();
+
             _log.Debug("Claiming tasks");
 
             Task task = null;
 
             do
             {
-                task = _taskService.GetNextTask();
+                task = taskService.GetNextTask();
 
                 if (task != null)
                 {
                     _log.Debug("Task found");
-
-                    _taskService.ProcessTask(task);
+                    
+                    taskService.ProcessTask(task);
                 }
             }
             while (task != null);
@@ -43,19 +42,24 @@ namespace GhostRunner.Server
             _log.Debug("No more tasks found");
         }
 
+        public void ClearTasks()
+        {
+            TaskService taskService = new TaskService();
+
+            _log.Debug("Clearing hung tasks");
+
+            taskService.ClearHungTasks();
+        }
+
         private void ConfigureTaskService()
         {
-            _log.Debug("Setting command timeout to " + TaskService.CommandWindowMinuteTimeout);
+            _log.Debug("Setting Node location to " + TaskService.NodeLocation);
 
-            TaskService.CommandWindowMinuteTimeout = Properties.Settings.Default.CommandWindowMinuteTimeout;
+            TaskService.NodeLocation = Properties.Settings.Default.NodeLocation;
 
             _log.Debug("Setting PhantomJS location to " + TaskService.PhantomJSLocation);
 
             TaskService.PhantomJSLocation = Properties.Settings.Default.PhantomJSLocation;
-
-            _log.Debug("Setting command working direction location to " + TaskService.CommandWorkingDirectory);
-
-            TaskService.CommandWorkingDirectory = Properties.Settings.Default.CommandWorkingDirectory;
 
             _log.Debug("Setting processing location to " + TaskService.ProcessingLocation);
 

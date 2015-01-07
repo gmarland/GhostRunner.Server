@@ -19,6 +19,20 @@ namespace GhostRunner.Server.DAL
             _context = context;
         }
 
+        public IList<Task> GetProcessingTasks()
+        {
+            try
+            {
+                return _context.Tasks.Where(it => it.Status == Status.Processing).ToList();
+            }
+            catch (Exception ex)
+            {
+                _log.Error("GetProcessingTasks(): An error occured retrieving processing tasks", ex);
+
+                return new List<Task>();
+            }
+        }
+
         public Task GetNextUnprocessed()
         {
             List<Task> tasks = new List<Task>();

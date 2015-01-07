@@ -50,9 +50,9 @@
     <Compile Include="IContext.cs" />
     <Compile Include="IScheduleItem.cs" />
     <Compile Include="ItemType.cs" />
-    <Compile Include="Migrations\201412161559399_Initial.cs" />
-    <Compile Include="Migrations\201412161559399_Initial.Designer.cs">
-      <DependentUpon>201412161559399_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201501040230130_InitialCreate.cs" />
+    <Compile Include="Migrations\201501040230130_InitialCreate.Designer.cs">
+      <DependentUpon>201501040230130_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GhostRunnerContextFactory.cs" />
@@ -65,6 +65,7 @@
     <Compile Include="ScheduleType.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="ScriptScheduleItem.cs" />
+    <Compile Include="ScriptType.cs" />
     <Compile Include="Sequence.cs" />
     <Compile Include="SequenceScheduleItem.cs" />
     <Compile Include="SequenceScript.cs" />
@@ -78,8 +79,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201412161559399_Initial.resx">
-      <DependentUpon>201412161559399_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501040230130_InitialCreate.resx">
+      <DependentUpon>201501040230130_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,11 +8,8 @@
     <Setting Name="ProcessingLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\Processing</Value>
     </Setting>
-    <Setting Name="CommandWorkingDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\CmdWindow</Value>
-    </Setting>
-    <Setting Name="CommandWindowMinuteTimeout" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="NodeLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files\nodejs\nodevars.bat</Value>
     </Setting>
   </Settings>
 </SettingsFile>

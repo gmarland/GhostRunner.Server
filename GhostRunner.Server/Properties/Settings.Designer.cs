@@ -49,25 +49,13 @@ namespace GhostRunner.Server.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\CmdWindow")]
-        public string CommandWorkingDirectory {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\nodejs\\nodevars.bat")]
+        public string NodeLocation {
             get {
-                return ((string)(this["CommandWorkingDirectory"]));
+                return ((string)(this["NodeLocation"]));
             }
             set {
-                this["CommandWorkingDirectory"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int CommandWindowMinuteTimeout {
-            get {
-                return ((int)(this["CommandWindowMinuteTimeout"]));
-            }
-            set {
-                this["CommandWindowMinuteTimeout"] = value;
+                this["NodeLocation"] = value;
             }
         }
     }

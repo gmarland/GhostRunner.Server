@@ -8,6 +8,8 @@ namespace GhostRunner.Server.DAL.Interface
 {
     public interface ITaskDataAccess
     {
+        IList<Task> GetProcessingTasks();
+
         Task GetNextUnprocessed();
 
         Boolean SetTaskProcessing(int taskId);

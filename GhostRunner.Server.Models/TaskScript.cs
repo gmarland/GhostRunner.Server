@@ -14,6 +14,8 @@ namespace GhostRunner.Server.Models
 
         public String Content { get; set; }
 
+        public ScriptType Type { get; set; }
+
         public String Log { get; set; }
 
         public virtual Task Task { get; set; }
