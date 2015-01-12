@@ -36,6 +36,8 @@ namespace GhostRunner.Server.Processor.Batch
 
         public string Process()
         {
+            if (!Directory.Exists(_processingLocation)) Directory.CreateDirectory(_processingLocation);
+
             _log.Debug("Starting to process Command Line task");
 
             String[] commandList = _taskScript.Content.Split(new String[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
