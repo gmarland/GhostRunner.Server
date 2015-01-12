@@ -61,7 +61,7 @@ namespace GhostRunner.Server.SL
 
             try
             {
-                foreach (TaskScript taskScript in task.TaskScripts)
+                foreach (TaskScript taskScript in task.TaskScripts.OrderBy(ts => ts.Position))
                 {
                     processTaskScript(processingLocation, task.ExternalId, taskScript);
                 }
