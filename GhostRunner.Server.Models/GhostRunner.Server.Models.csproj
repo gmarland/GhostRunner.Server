@@ -68,10 +68,6 @@
     <Compile Include="IContext.cs" />
     <Compile Include="IScheduleItem.cs" />
     <Compile Include="ItemType.cs" />
-    <Compile Include="Migrations\201501040230130_InitialCreate.cs" />
-    <Compile Include="Migrations\201501040230130_InitialCreate.Designer.cs">
-      <DependentUpon>201501040230130_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GhostRunnerContextFactory.cs" />
     <Compile Include="Project.cs" />
@@ -95,11 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501040230130_InitialCreate.resx">
-      <DependentUpon>201501040230130_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
