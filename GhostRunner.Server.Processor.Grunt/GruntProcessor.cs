@@ -83,7 +83,7 @@ namespace GhostRunner.Server.Processor.Grunt
         {
             List<String> npmCommands = new List<String>();
 
-            npmCommands.Add("npm install grunt-cli");
+            npmCommands.Add("npm install -g grunt-cli");
 
             Regex requirementsRegex = new Regex(@"grunt.loadNpmTasks\(\"".*?\""\)");
 
