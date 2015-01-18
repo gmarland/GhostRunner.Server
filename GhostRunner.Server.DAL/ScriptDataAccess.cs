@@ -20,7 +20,7 @@ namespace GhostRunner.Server.DAL
             _context = context;
         }
 
-        public Script Get(int scriptId)
+        public Script Get(long scriptId)
         {
             try
             {

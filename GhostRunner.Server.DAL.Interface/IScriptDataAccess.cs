@@ -9,6 +9,6 @@ namespace GhostRunner.Server.DAL.Interface
 {
     public interface IScriptDataAccess
     {
-        Script Get(int scriptId);
+        Script Get(long scriptId);
     }
 }

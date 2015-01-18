@@ -77,7 +77,7 @@ namespace GhostRunner.Server.DAL
             }
         }
 
-        public Boolean SetTaskProcessing(int taskId)
+        public Boolean SetTaskProcessing(long taskId)
         {
             Task task = null;
             
@@ -117,7 +117,7 @@ namespace GhostRunner.Server.DAL
             }
         }
 
-        public Boolean SetTaskComplete(int taskId, Status status)
+        public Boolean SetTaskComplete(long taskId, Status status)
         {
             Task task = null;
 

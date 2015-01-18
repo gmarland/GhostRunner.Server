@@ -29,11 +29,6 @@ namespace GhostRunner.Server.SL
 
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public TaskService()
-        {
-            InitializeDataAccess(new GhostRunnerContext("DatabaseConnectionString"));
-        }
-
         public TaskService(IContext context)
         {
             InitializeDataAccess(context);

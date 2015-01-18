@@ -9,6 +9,6 @@ namespace GhostRunner.Server.DAL.Interface
 {
     public interface ISequenceDataAccess
     {
-        Sequence Get(int sequenceId);
+        Sequence Get(long sequenceId);
     }
 }

@@ -35,7 +35,7 @@ namespace GhostRunner.Server.DAL
         }
 
 
-        public Boolean UpdateLastScheduled(int scheduleId, DateTime lastScheduled)
+        public Boolean UpdateLastScheduled(long scheduleId, DateTime lastScheduled)
         {
             Schedule schedule = null;
 

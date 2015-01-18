@@ -20,9 +20,9 @@ namespace GhostRunner.Server.SL
 
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public ScheduleService()
+        public ScheduleService(IContext context)
         {
-            InitializeDataAccess(new GhostRunnerContext("DatabaseConnectionString"));
+            InitializeDataAccess(context);
         }
 
         public void ScheduleTasks()
@@ -75,12 +75,12 @@ namespace GhostRunner.Server.SL
             }
         }
 
-        public Boolean UpdateLastScheduled(int scheduleId, DateTime lastScheduled)
+        public Boolean UpdateLastScheduled(long scheduleId, DateTime lastScheduled)
         {
             return _scheduleDataAccess.UpdateLastScheduled(scheduleId, lastScheduled);
         }
 
-        public Task InsertScriptTask(int scriptId, IList<ScheduleParameter> scheduleParameters)
+        public Task InsertScriptTask(long scriptId, IList<ScheduleParameter> scheduleParameters)
         {
             Script script = _scriptDataAccess.Get(scriptId);
 
@@ -121,7 +121,7 @@ namespace GhostRunner.Server.SL
             }
         }
 
-        public Task InsertSequenceTask(int sequenceId)
+        public Task InsertSequenceTask(long sequenceId)
         {
             Sequence sequence = _sequenceDataAccess.Get(sequenceId);
 
@@ -157,7 +157,7 @@ namespace GhostRunner.Server.SL
             }
         }
 
-        public TaskScriptParameter InsertTaskScriptParameter(int taskScriptId, String name, String value)
+        public TaskScriptParameter InsertTaskScriptParameter(long taskScriptId, String name, String value)
         {
             TaskScript taskScript = _taskScriptDataAccess.Get(taskScriptId);
 

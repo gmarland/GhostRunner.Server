@@ -9,10 +9,10 @@ namespace GhostRunner.Server.DAL.Interface
 {
     public interface ITaskScriptDataAccess
     {
-        TaskScript Get(int taskScriptId);
+        TaskScript Get(long taskScriptId);
 
         TaskScript Insert(TaskScript taskScript);
 
-        Boolean UpdateTaskScriptLog(int taskId, String log);
+        Boolean UpdateTaskScriptLog(long taskId, String log);
     }
 }

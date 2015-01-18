@@ -11,6 +11,6 @@ namespace GhostRunner.Server.DAL.Interface
     {
         IList<Schedule> GetAllSchedules();
 
-        Boolean UpdateLastScheduled(int scheduleId, DateTime lastScheduled);
+        Boolean UpdateLastScheduled(long scheduleId, DateTime lastScheduled);
     }
 }

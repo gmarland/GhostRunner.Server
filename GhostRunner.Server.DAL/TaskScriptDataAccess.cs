@@ -20,7 +20,7 @@ namespace GhostRunner.Server.DAL
             _context = context;
         }
 
-        public TaskScript Get(int taskScriptId)
+        public TaskScript Get(long taskScriptId)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace GhostRunner.Server.DAL
             }
         }
 
-        public Boolean UpdateTaskScriptLog(int taskScriptId, string log)
+        public Boolean UpdateTaskScriptLog(long taskScriptId, string log)
         {
             TaskScript taskScript = null;
 

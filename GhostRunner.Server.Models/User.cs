@@ -9,7 +9,7 @@ namespace GhostRunner.Server.Models
     public class User
     {
         [Required]
-        public int ID { get; set; }
+        public long ID { get; set; }
 
         [Required, MaxLength(38)]
         public String ExternalId { get; set; }

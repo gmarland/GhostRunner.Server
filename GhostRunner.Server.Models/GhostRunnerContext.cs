@@ -1,8 +1,8 @@
-﻿using GhostRunner.Server.Models.Migrations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +11,11 @@ namespace GhostRunner.Server.Models
 {
     public class GhostRunnerContext : DbContext, IContext
     {
-        public GhostRunnerContext(string connectionString)
-            : base(connectionString)
+        public GhostRunnerContext(String connectionString)
+            : base(new SQLiteConnection(connectionString), contextOwnsConnection: true)
         {
-            Configuration.AutoDetectChangesEnabled = true;
-            Database.SetInitializer<GhostRunnerContext>(new MigrateDatabaseToLatestVersion<GhostRunnerContext, Configuration>(connectionString));
         }
-        
+
         public IDbSet<User> Users { get; set; }
 
         public IDbSet<Project> Projects { get; set; }

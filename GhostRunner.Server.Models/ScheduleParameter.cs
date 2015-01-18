@@ -10,7 +10,7 @@ namespace GhostRunner.Server.Models
     public class ScheduleParameter
     {
         [Required]
-        public int ID { get; set; }
+        public long ID { get; set; }
 
         [Required]
         public String Name { get; set; }

@@ -20,7 +20,7 @@ namespace GhostRunner.Server.DAL
             _context = context;
         }
 
-        public Sequence Get(int sequenceId)
+        public Sequence Get(long sequenceId)
         {
             try
             {

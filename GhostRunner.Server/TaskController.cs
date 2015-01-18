@@ -3,6 +3,7 @@ using GhostRunner.Server.SL;
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,7 +21,7 @@ namespace GhostRunner.Server
 
         public void ClaimTasks()
         {
-            TaskService taskService = new TaskService();
+            TaskService taskService = new TaskService(new GhostRunnerContext(ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString));
 
             _log.Debug("Claiming tasks");
 
@@ -44,7 +45,7 @@ namespace GhostRunner.Server
 
         public void ClearTasks()
         {
-            TaskService taskService = new TaskService();
+            TaskService taskService = new TaskService(new GhostRunnerContext(ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString));
 
             _log.Debug("Clearing hung tasks");
 
