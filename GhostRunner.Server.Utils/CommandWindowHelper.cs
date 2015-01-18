@@ -37,7 +37,6 @@ namespace GhostRunner.Server.Utils
 
             int timeout = minuteTimeout * 60000;
             StringBuilder output = new StringBuilder();
-            StringBuilder error = new StringBuilder();
 
             using (AutoResetEvent outputWaitHandle = new AutoResetEvent(false))
             {
