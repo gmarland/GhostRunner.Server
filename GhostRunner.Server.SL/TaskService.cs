@@ -93,6 +93,8 @@ namespace GhostRunner.Server.SL
                 {
                     IOHelper.DeleteDirectory(processingLocation);
 
+                    if (Directory.Exists(processingLocation)) Directory.Delete(processingLocation, true);
+
                     deleteError = null;
                     break;
                 }
@@ -172,14 +174,26 @@ namespace GhostRunner.Server.SL
                     _log.Debug("Package cache location: " + packageCacheLocation);
                     _log.Debug("target package location: " + targetPackageLocation);
 
-                    if ((packageCache == null) || 
-                        ((packageCache != null) && (!packageCache.Store)) || 
-                        ((packageCache != null) && (packageCache.Store) && (!Directory.Exists(packageCacheLocation)))) _log.Info(CommandWindowHelper.ProcessCommand(scriptProcessingLocation, _nodeLocation, 5, "npm install " + requiredPackage));
-                    else IOHelper.CopyDirectory(packageCacheLocation, targetPackageLocation);
+                    if ((packageCache == null) ||
+                        ((packageCache != null) && (!packageCache.Store)) ||
+                        ((packageCache != null) && (packageCache.Store) && (!Directory.Exists(packageCacheLocation))))
+                    {
+                        _log.Info(CommandWindowHelper.ProcessCommand(scriptProcessingLocation, _nodeLocation, 5, "npm install " + requiredPackage));
+                    }
+                    else
+                    {
+                        Boolean packageImportSuccessful = IOHelper.CopyDirectory(packageCacheLocation, targetPackageLocation);
+
+                        if (!packageImportSuccessful) _log.Info(CommandWindowHelper.ProcessCommand(scriptProcessingLocation, _nodeLocation, 5, "npm install " + requiredPackage));
+                    }
 
                     if (Directory.Exists(targetPackageLocation))
                     {
-                        if (packageCache == null)
+                        Boolean copySuccessful = true;
+
+                        if ((packageCache.Store) && (!Directory.Exists(packageCacheLocation))) copySuccessful = IOHelper.CopyDirectory(targetPackageLocation, packageCacheLocation);
+
+                        if ((packageCache == null) && (copySuccessful))
                         {
                             packageCache = new PackageCache();
                             packageCache.ExternalId = System.Guid.NewGuid().ToString();
@@ -190,8 +204,6 @@ namespace GhostRunner.Server.SL
 
                             packageCache = _packageCacheDataAccess.Insert(packageCache);
                         }
-
-                        if ((packageCache.Store) && (!Directory.Exists(packageCacheLocation))) IOHelper.CopyDirectory(targetPackageLocation, packageCacheLocation);
                     }
                 }
 
