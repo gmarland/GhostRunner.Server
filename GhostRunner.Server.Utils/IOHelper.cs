@@ -9,6 +9,25 @@ namespace GhostRunner.Server.Utils
 {
     public class IOHelper
     {
+        public static void DeleteDirectory(string targetDirectory)
+        {
+            string[] files = Directory.GetFiles(targetDirectory);
+            string[] dirs = Directory.GetDirectories(targetDirectory);
+
+            foreach (string file in files)
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                DeleteDirectory(dir);
+            }
+
+            Directory.Delete(targetDirectory, false);
+        }
+
         public static void CopyDirectory(String sourcePath, String destinationPath)
         {
             foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))

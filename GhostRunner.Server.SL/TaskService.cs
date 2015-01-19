@@ -91,7 +91,7 @@ namespace GhostRunner.Server.SL
             {
                 try
                 {
-                    DeleteDirectory(processingLocation);
+                    IOHelper.DeleteDirectory(processingLocation);
 
                     deleteError = null;
                     break;
@@ -162,6 +162,8 @@ namespace GhostRunner.Server.SL
 
                 foreach(String requiredPackage in processor.GetRequiredPackages())
                 {
+                    PackageCache packageCache = _packageCacheDataAccess.Get(requiredPackage);
+
                     _log.Debug("Package required: " + requiredPackage);
 
                     String packageCacheLocation = _packageCacheLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.Project.ExternalId + "\\" + requiredPackage;
@@ -170,13 +172,13 @@ namespace GhostRunner.Server.SL
                     _log.Debug("Package cache location: " + packageCacheLocation);
                     _log.Debug("target package location: " + targetPackageLocation);
 
-                    if (!Directory.Exists(packageCacheLocation)) _log.Info(CommandWindowHelper.ProcessCommand(scriptProcessingLocation, _nodeLocation, 5, "npm install " + requiredPackage));
+                    if ((packageCache == null) || 
+                        ((packageCache != null) && (!packageCache.Store)) || 
+                        ((packageCache != null) && (packageCache.Store) && (!Directory.Exists(packageCacheLocation)))) _log.Info(CommandWindowHelper.ProcessCommand(scriptProcessingLocation, _nodeLocation, 5, "npm install " + requiredPackage));
                     else IOHelper.CopyDirectory(packageCacheLocation, targetPackageLocation);
 
                     if (Directory.Exists(targetPackageLocation))
                     {
-                        PackageCache packageCache = _packageCacheDataAccess.Get(requiredPackage);
-
                         if (packageCache == null)
                         {
                             packageCache = new PackageCache();
@@ -197,25 +199,6 @@ namespace GhostRunner.Server.SL
             }
 
             _taskScriptDataAccess.UpdateTaskScriptLog(taskScript.ID, processResults);
-        }
-
-        private void DeleteDirectory(string target_dir)
-        {
-            string[] files = Directory.GetFiles(target_dir);
-            string[] dirs = Directory.GetDirectories(target_dir);
-
-            foreach (string file in files)
-            {
-                File.SetAttributes(file, FileAttributes.Normal);
-                File.Delete(file);
-            }
-
-            foreach (string dir in dirs)
-            {
-                DeleteDirectory(dir);
-            }
-
-            Directory.Delete(target_dir, false);
         }
 
         private void InitializeDataAccess(IContext context)
