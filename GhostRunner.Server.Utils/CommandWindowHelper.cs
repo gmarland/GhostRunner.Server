@@ -80,13 +80,20 @@ namespace GhostRunner.Server.Utils
                     proc.BeginErrorReadLine();
                     proc.BeginOutputReadLine();
 
-                    proc.WaitForExit(timeout);
-                    outputWaitHandle.WaitOne(timeout);
-                    errorWaitHandle.WaitOne(timeout);
+                    if (proc.WaitForExit(timeout) &&
+                        outputWaitHandle.WaitOne(timeout) &&
+                        errorWaitHandle.WaitOne(timeout))
+                    {
+                        proc.Close();
 
-                    proc.Close();
+                        return output.ToString();
+                    }
+                    else
+                    {
+                        proc.Close();
 
-                    return output.ToString();
+                        return output.ToString();
+                    }
                 }
             }
         }
