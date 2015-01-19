@@ -60,7 +60,7 @@ namespace GhostRunner.Server.SL
         {
             _log.Debug("Starting to process task");
 
-            String processingLocation = _processingLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.ExternalId + "\\";
+            String processingLocation = _processingLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.ID + "\\";
 
             _log.Debug("Processing Location: " + processingLocation);
 
@@ -168,7 +168,7 @@ namespace GhostRunner.Server.SL
 
                     _log.Debug("Package required: " + requiredPackage);
 
-                    String packageCacheLocation = _packageCacheLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.Project.ExternalId + "\\" + requiredPackage;
+                    String packageCacheLocation = _packageCacheLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.Project.ID + "\\" + requiredPackage;
                     String targetPackageLocation = scriptProcessingLocation.TrimEnd(new char[] { '\\' }) + "\\node_modules\\" + requiredPackage;
 
                     _log.Debug("Package cache location: " + packageCacheLocation);
