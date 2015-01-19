@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PackageCacheService.cs" />
     <Compile Include="ScheduleService.cs" />
     <Compile Include="TaskService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

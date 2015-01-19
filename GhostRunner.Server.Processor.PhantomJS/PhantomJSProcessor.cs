@@ -50,6 +50,11 @@ namespace GhostRunner.Server.Processor.PhantomJS
             else return String.Empty;
         }
 
+        public IList<String> GetRequiredPackages()
+        {
+            return new List<String>();
+        }
+
         private String WritePhantomJSFile()
         {
             if (!Directory.Exists(_processingLocation)) Directory.CreateDirectory(_processingLocation);

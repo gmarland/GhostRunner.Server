@@ -44,5 +44,10 @@ namespace GhostRunner.Server.Processor.Batch
 
             return CommandWindowHelper.ProcessCommand(_processingLocation, _nodeLocation, _commandLineMinuteTimeout, commandList);
         }
+
+        public IList<String> GetRequiredPackages()
+        {
+            return new List<String>();
+        }
     }
 }

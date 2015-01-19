@@ -38,6 +38,8 @@ namespace GhostRunner.Server.Models
 
         public IDbSet<ScheduleParameter> ScheduleParameters { get; set; }
 
+        public IDbSet<PackageCache> PackageCaches { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

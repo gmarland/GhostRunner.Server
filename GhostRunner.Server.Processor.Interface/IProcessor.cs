@@ -9,5 +9,7 @@ namespace GhostRunner.Server.Processor.Interface
     public interface IProcessor
     {
         String Process();
+
+        IList<String> GetRequiredPackages();
     }
 }

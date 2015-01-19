@@ -86,6 +86,11 @@ namespace GhostRunner.Server.Processor.Git
             }
         }
 
+        public IList<String> GetRequiredPackages()
+        {
+            return new List<String>();
+        }
+
         private String GetGitURL(String location, String username, String password)
         {
             _log.Debug("Building git URL");

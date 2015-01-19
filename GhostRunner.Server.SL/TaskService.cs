@@ -19,18 +19,24 @@ namespace GhostRunner.Server.SL
 {
     public class TaskService
     {
-        public static String NodeLocation = String.Empty;
-        public static String PhantomJSLocation = String.Empty;
-
-        public static String ProcessingLocation = String.Empty;
+        private String _nodeLocation;
+        private String _phantomJSLocation;
+        private String _processingLocation;
+        private String _packageCacheLocation;
 
         private ITaskDataAccess _taskDataAccess;
         private ITaskScriptDataAccess _taskScriptDataAccess;
+        private IPackageCacheDataAccess _packageCacheDataAccess;
 
         private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public TaskService(IContext context)
+        public TaskService(IContext context, String processingLocation, String packageCacheLocation, String nodeLocation, String phantomJSLocation)
         {
+            _nodeLocation = nodeLocation;
+            _phantomJSLocation = phantomJSLocation;
+            _processingLocation = processingLocation;
+            _packageCacheLocation = packageCacheLocation;
+
             InitializeDataAccess(context);
         }
 
@@ -52,13 +58,19 @@ namespace GhostRunner.Server.SL
 
         public void ProcessTask(Task task)
         {
-            String processingLocation = ProcessingLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.ExternalId + "\\";
+            _log.Debug("Starting to process task");
+
+            String processingLocation = _processingLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.ExternalId + "\\";
+
+            _log.Debug("Processing Location: " + processingLocation);
 
             try
             {
+                _log.Debug("Task contains " + task.TaskScripts.Count + " scripts");
+
                 foreach (TaskScript taskScript in task.TaskScripts.OrderBy(ts => ts.Position))
                 {
-                    processTaskScript(processingLocation, task.ExternalId, taskScript);
+                    processTaskScript(processingLocation, task, taskScript);
                 }
             }
             catch (Exception ex)
@@ -113,33 +125,76 @@ namespace GhostRunner.Server.SL
 
         #region Private Methods
 
-        private void processTaskScript(String processingLocation, String taskId, TaskScript taskScript)
+        private void processTaskScript(String scriptProcessingLocation, Task task, TaskScript taskScript)
         {
+            _log.Debug("Determining task type");
 
             IProcessor processor = null;
 
             switch (taskScript.Type)
             {
                 case ScriptType.Git:
-                    processor = new GitProcessor(processingLocation, taskScript);
+                    processor = new GitProcessor(scriptProcessingLocation, taskScript);
                     break;
                 case ScriptType.CommandLine:
-                    processor = new CommandLineProcessor(processingLocation, NodeLocation, taskScript);
+                    processor = new CommandLineProcessor(scriptProcessingLocation, _nodeLocation, taskScript);
                     break;
                 case ScriptType.Node:
-                    processor = new NodeProcessor(processingLocation, NodeLocation, taskScript);
+                    processor = new NodeProcessor(scriptProcessingLocation, _nodeLocation, taskScript);
                     break;
                 case ScriptType.Grunt:
-                    processor = new GruntProcessor(processingLocation, NodeLocation, taskScript);
+                    processor = new GruntProcessor(scriptProcessingLocation, _nodeLocation, taskScript);
                     break;
                 case ScriptType.PhantomJS:
-                    processor = new PhantomJSProcessor(processingLocation, PhantomJSLocation, taskScript);
+                    processor = new PhantomJSProcessor(scriptProcessingLocation, _phantomJSLocation, taskScript);
                     break;
             }
 
             String processResults = String.Empty;
 
-            if (processor != null) processResults = processor.Process();
+            if (processor != null)
+            {
+                _log.Debug("Starting to process task");
+
+                if (!Directory.Exists(scriptProcessingLocation)) Directory.CreateDirectory(scriptProcessingLocation);
+
+                _log.Debug("Checking for any required node packages");
+
+                foreach(String requiredPackage in processor.GetRequiredPackages())
+                {
+                    _log.Debug("Package required: " + requiredPackage);
+
+                    String packageCacheLocation = _packageCacheLocation.TrimEnd(new char[] { '\\' }) + "\\" + task.Project.ExternalId + "\\" + requiredPackage;
+                    String targetPackageLocation = scriptProcessingLocation.TrimEnd(new char[] { '\\' }) + "\\node_modules\\" + requiredPackage;
+
+                    _log.Debug("Package cache location: " + packageCacheLocation);
+                    _log.Debug("target package location: " + targetPackageLocation);
+
+                    if (!Directory.Exists(packageCacheLocation)) _log.Info(CommandWindowHelper.ProcessCommand(scriptProcessingLocation, _nodeLocation, 5, "npm install " + requiredPackage));
+                    else IOHelper.CopyDirectory(packageCacheLocation, targetPackageLocation);
+
+                    if (Directory.Exists(targetPackageLocation))
+                    {
+                        PackageCache packageCache = _packageCacheDataAccess.Get(requiredPackage);
+
+                        if (packageCache == null)
+                        {
+                            packageCache = new PackageCache();
+                            packageCache.ExternalId = System.Guid.NewGuid().ToString();
+                            packageCache.Name = requiredPackage;
+                            packageCache.Version = IOHelper.GetPackageVersion(targetPackageLocation);
+                            packageCache.Store = true;
+                            packageCache.Project = task.Project;
+
+                            packageCache = _packageCacheDataAccess.Insert(packageCache);
+                        }
+
+                        if ((packageCache.Store) && (!Directory.Exists(packageCacheLocation))) IOHelper.CopyDirectory(targetPackageLocation, packageCacheLocation);
+                    }
+                }
+
+                processResults = processor.Process();
+            }
 
             _taskScriptDataAccess.UpdateTaskScriptLog(taskScript.ID, processResults);
         }
@@ -167,6 +222,7 @@ namespace GhostRunner.Server.SL
         {
             _taskDataAccess = new TaskDataAccess(context);
             _taskScriptDataAccess = new TaskScriptDataAccess(context);
+            _packageCacheDataAccess = new PackageCacheDataAccess(context);
         }
 
         #endregion

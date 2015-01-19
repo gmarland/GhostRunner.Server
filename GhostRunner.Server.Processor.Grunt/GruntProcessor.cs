@@ -45,11 +45,30 @@ namespace GhostRunner.Server.Processor.Grunt
 
             if (!String.IsNullOrEmpty(gruntFileLocation))
             {
-                LoadNpmRequirements();
-
                 return CommandWindowHelper.ProcessCommand(_processingLocation, _nodeLocation, _gruntMinuteTimeout, "grunt");
             }
             else return String.Empty;
+        }
+
+        public IList<String> GetRequiredPackages()
+        {
+            List<String> packages = new List<String>();
+
+            Regex requirementsRegex = new Regex(@"require\(\"".*?\""\)");
+
+            foreach (Match match in requirementsRegex.Matches(_taskScript.Content.Replace("'", "\"")))
+            {
+                String matched = match.Value;
+
+                Regex npmReqRegex = new Regex(@"\"".*?\""");
+
+                foreach (Match npmMatch in npmReqRegex.Matches(matched))
+                {
+                    packages.Add(npmMatch.Value.Trim(new char[] { '"' }));
+                }
+            }
+
+            return packages;
         }
 
         private String WriteGruntFile()
@@ -77,30 +96,6 @@ namespace GhostRunner.Server.Processor.Grunt
 
                 return String.Empty;
             }
-        }
-
-        private void LoadNpmRequirements()
-        {
-            List<String> npmCommands = new List<String>();
-
-            npmCommands.Add("npm install -g grunt-cli");
-
-            Regex requirementsRegex = new Regex(@"grunt.loadNpmTasks\(\"".*?\""\)");
-
-            foreach (Match match in requirementsRegex.Matches(_taskScript.Content.Replace("'", "\"")))
-            {
-                String matched = match.Value;
-
-                Regex npmReqRegex = new Regex(@"\"".*?\""");
-
-                foreach (Match npmMatch in npmReqRegex.Matches(matched))
-                {
-                    npmCommands.Add("npm install " + npmMatch.Value.Trim(new char[] { '"' }));
-                }
-            }
-
-            _log.Info(CommandWindowHelper.ProcessCommand(_processingLocation, _nodeLocation, _gruntMinuteTimeout, npmCommands.ToArray()));
-
         }
     }
 }

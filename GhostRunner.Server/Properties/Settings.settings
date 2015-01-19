@@ -11,5 +11,8 @@
     <Setting Name="NodeLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files\nodejs\nodevars.bat</Value>
     </Setting>
+    <Setting Name="PackageCacheLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\PackageCache</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

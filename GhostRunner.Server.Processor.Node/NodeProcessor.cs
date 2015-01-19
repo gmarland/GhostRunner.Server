@@ -45,17 +45,34 @@ namespace GhostRunner.Server.Processor.Node
 
             if (!String.IsNullOrEmpty(nodeFileLocation))
             {
-                LoadNpmRequirements();
-
                 return CommandWindowHelper.ProcessCommand(_processingLocation, _nodeLocation, _nodeMinuteTimeout, "node " + nodeFileLocation);
             }
             else return String.Empty;
         }
 
+        public IList<String> GetRequiredPackages()
+        {
+            List<String> packages = new List<String>();
+
+            Regex requirementsRegex = new Regex(@"require\(\"".*?\""\)");
+
+            foreach (Match match in requirementsRegex.Matches(_taskScript.Content.Replace("'", "\"")))
+            {
+                String matched = match.Value;
+
+                Regex npmReqRegex = new Regex(@"\"".*?\""");
+
+                foreach (Match npmMatch in npmReqRegex.Matches(matched))
+                {
+                    packages.Add(npmMatch.Value.Trim(new char[] { '"' }));
+                }
+            }
+
+            return packages;
+        }
+
         private String WriteNodeFile()
         {
-            if (!Directory.Exists(_processingLocation)) Directory.CreateDirectory(_processingLocation);
-
             String outputScriptLocation = Path.Combine(_processingLocation.TrimEnd(new char[] { '\\' }), _taskScript.ID + ".js");
 
             String parameterizedScript = _taskScript.Content;
@@ -76,23 +93,6 @@ namespace GhostRunner.Server.Processor.Node
                 _log.Error("WriteNodeFile(" + _processingLocation + ", " + _taskScript.ID + "): Error writing node script", ex);
 
                 return String.Empty;
-            }
-        }
-
-        private void LoadNpmRequirements()
-        {
-            Regex requirementsRegex = new Regex(@"require\(\"".*?\""\)");
-
-            foreach (Match match in requirementsRegex.Matches(_taskScript.Content.Replace("'", "\"")))
-            {
-                String matched = match.Value;
-
-                Regex npmReqRegex = new Regex(@"\"".*?\""");
-
-                foreach (Match npmMatch in npmReqRegex.Matches(matched))
-                {
-                    _log.Info(CommandWindowHelper.ProcessCommand(_processingLocation, _nodeLocation, 5, "npm install " + npmMatch.Value.Trim(new char[] { '"' })));
-                }
             }
         }
     }

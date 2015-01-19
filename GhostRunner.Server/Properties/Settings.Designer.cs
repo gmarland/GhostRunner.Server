@@ -58,5 +58,17 @@ namespace GhostRunner.Server.Properties {
                 this["NodeLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\PackageCache")]
+        public string PackageCacheLocation {
+            get {
+                return ((string)(this["PackageCacheLocation"]));
+            }
+            set {
+                this["PackageCacheLocation"] = value;
+            }
+        }
     }
 }
