@@ -9,7 +9,7 @@ namespace GhostRunner.Server.DAL.Interface
 {
     public interface IPackageCacheDataAccess
     {
-        PackageCache Get(String packageName);
+        PackageCache Get(long projectId, String packageName);
 
         PackageCache Insert(PackageCache packageCache);
 

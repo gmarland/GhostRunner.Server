@@ -164,7 +164,7 @@ namespace GhostRunner.Server.SL
 
                 foreach(String requiredPackage in processor.GetRequiredPackages())
                 {
-                    PackageCache packageCache = _packageCacheDataAccess.Get(requiredPackage);
+                    PackageCache packageCache = _packageCacheDataAccess.Get(task.Project.ID, requiredPackage);
 
                     _log.Debug("Package required: " + requiredPackage);
 
@@ -178,20 +178,36 @@ namespace GhostRunner.Server.SL
                         ((packageCache != null) && (!packageCache.Store)) ||
                         ((packageCache != null) && (packageCache.Store) && (!Directory.Exists(packageCacheLocation))))
                     {
-                        _log.Info(CommandWindowHelper.ProcessCommand(scriptProcessingLocation, _nodeLocation, 5, "npm install " + requiredPackage));
+                        _log.Debug("Cached package does not exist so importing");
+
+                        processResults += CommandWindowHelper.ProcessCommand(scriptProcessingLocation, _nodeLocation, 5, "npm install " + requiredPackage) + Environment.NewLine;
                     }
                     else
                     {
+                        _log.Debug("Cached package exists so attempting to pull into place");
+
                         Boolean packageImportSuccessful = IOHelper.CopyDirectory(packageCacheLocation, targetPackageLocation);
 
-                        if (!packageImportSuccessful) _log.Info(CommandWindowHelper.ProcessCommand(scriptProcessingLocation, _nodeLocation, 5, "npm install " + requiredPackage));
+                        _log.Debug("Check if the cach package copy was successfull");
+
+                        if (!packageImportSuccessful)
+                        {
+                            _log.Debug("Cache package copy failed so pulling " + requiredPackage + " from npm");
+
+                            processResults += CommandWindowHelper.ProcessCommand(scriptProcessingLocation, _nodeLocation, 5, "npm install " + requiredPackage) + Environment.NewLine;
+                        }
                     }
+
+                    _log.Debug("Checking that we now have the target package");
 
                     if (Directory.Exists(targetPackageLocation))
                     {
+                        _log.Debug("We do have the package so copy it into cache");
+
                         Boolean copySuccessful = true;
 
-                        if ((packageCache.Store) && (!Directory.Exists(packageCacheLocation))) copySuccessful = IOHelper.CopyDirectory(targetPackageLocation, packageCacheLocation);
+                        if ((packageCache == null) || 
+                            ((packageCache != null) && (packageCache.Store) && (!Directory.Exists(packageCacheLocation)))) copySuccessful = IOHelper.CopyDirectory(targetPackageLocation, packageCacheLocation);
 
                         if ((packageCache == null) && (copySuccessful))
                         {
@@ -207,7 +223,7 @@ namespace GhostRunner.Server.SL
                     }
                 }
 
-                processResults = processor.Process();
+                processResults += processor.Process();
             }
 
             _taskScriptDataAccess.UpdateTaskScriptLog(taskScript.ID, processResults);

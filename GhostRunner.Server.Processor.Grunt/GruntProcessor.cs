@@ -43,6 +43,8 @@ namespace GhostRunner.Server.Processor.Grunt
 
             _log.Debug("Grunt file created at " + gruntFileLocation);
 
+            CommandWindowHelper.ProcessCommand(_processingLocation, _nodeLocation, _gruntMinuteTimeout, "npm install -g grunt-cli");
+
             if (!String.IsNullOrEmpty(gruntFileLocation))
             {
                 return CommandWindowHelper.ProcessCommand(_processingLocation, _nodeLocation, _gruntMinuteTimeout, "grunt");
@@ -54,7 +56,7 @@ namespace GhostRunner.Server.Processor.Grunt
         {
             List<String> packages = new List<String>();
 
-            Regex requirementsRegex = new Regex(@"require\(\"".*?\""\)");
+            Regex requirementsRegex = new Regex(@"grunt.loadNpmTasks\(\"".*?\""\)");
 
             foreach (Match match in requirementsRegex.Matches(_taskScript.Content.Replace("'", "\"")))
             {

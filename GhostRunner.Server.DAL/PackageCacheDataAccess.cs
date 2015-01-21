@@ -20,11 +20,11 @@ namespace GhostRunner.Server.DAL
             _context = context;
         }
 
-        public PackageCache Get(String packageName)
+        public PackageCache Get(long projecId, String packageName)
         {
             try
             {
-                return _context.PackageCaches.SingleOrDefault(s => s.Name.Trim().ToLower() == packageName.Trim().ToLower());
+                return _context.PackageCaches.SingleOrDefault(s => s.Project.ID == projecId && s.Name.Trim().ToLower() == packageName.Trim().ToLower());
             }
             catch (Exception ex)
             {
