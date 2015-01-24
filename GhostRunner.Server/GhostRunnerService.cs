@@ -1,7 +1,9 @@
-﻿using log4net;
+﻿using GhostRunner.Server.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
@@ -47,6 +49,8 @@ namespace GhostRunner.Server
 
         protected override void OnStart(string[] args)
         {
+            GhostRunnerContext.Initialize(ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString);
+
             _taskTimer.Start();
 
             _log.Debug("Task timer started");
