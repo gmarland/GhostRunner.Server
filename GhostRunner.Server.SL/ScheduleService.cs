@@ -53,12 +53,28 @@ namespace GhostRunner.Server.SL
                     case ScheduleType.Daily:
                         _log.Debug("Daily schedule found");
 
+                        if ((!schedule.LastScheduled.HasValue) && (DateTime.Now.Hour > scheduleDateTime.Value.Hour) && (DateTime.Now.Minute > scheduleDateTime.Value.Minute))
+                        {
+                            schedule.LastScheduled = scheduleDateTime.Value;
+
+                            UpdateLastScheduled(schedule.ID, scheduleDateTime.Value);
+                        }
+
                         CreateTask(schedule, scheduleDateTime.Value);
                         break;
                     case ScheduleType.Weekly:
                         _log.Debug("Weekly schedule found");
 
-                        foreach (ScheduleDetail scheduleDetail in schedule.ScheduleDetails.Where(sd => sd.Name.Trim().ToLower() == "day" && sd.Value.Trim().ToLower() == DateTime.Now.DayOfWeek.ToString().ToLower()))
+                        List<ScheduleDetail> weeklyScheduleDetails = schedule.ScheduleDetails.Where(sd => sd.Name.Trim().ToLower() == "day" && sd.Value.Trim().ToLower() == DateTime.Now.DayOfWeek.ToString().ToLower()).ToList();
+
+                        if ((!schedule.LastScheduled.HasValue) && (weeklyScheduleDetails.Count > 0) && (DateTime.Now.Hour > scheduleDateTime.Value.Hour) && (DateTime.Now.Minute > scheduleDateTime.Value.Minute))
+                        {
+                            schedule.LastScheduled = scheduleDateTime.Value;
+
+                            UpdateLastScheduled(schedule.ID, scheduleDateTime.Value);
+                        }
+
+                        foreach (ScheduleDetail scheduleDetail in weeklyScheduleDetails)
                         {
                             CreateTask(schedule, scheduleDateTime.Value);
                         }
@@ -66,7 +82,16 @@ namespace GhostRunner.Server.SL
                     case ScheduleType.Monthly:
                         _log.Debug("Monthly schedule found");
 
-                        foreach (ScheduleDetail scheduleDetail in schedule.ScheduleDetails.Where(sd => sd.Name.Trim().ToLower() == "date" && sd.Value.Trim().ToLower() == DateTime.Now.Date.Day.ToString()))
+                        List<ScheduleDetail> monthlyScheduleDetails = schedule.ScheduleDetails.Where(sd => sd.Name.Trim().ToLower() == "date" && sd.Value.Trim().ToLower() == DateTime.Now.Date.Day.ToString()).ToList();
+
+                        if ((!schedule.LastScheduled.HasValue) && (monthlyScheduleDetails.Count > 0) && (DateTime.Now.Hour > scheduleDateTime.Value.Hour) && (DateTime.Now.Minute > scheduleDateTime.Value.Minute))
+                        {
+                            schedule.LastScheduled = scheduleDateTime.Value;
+
+                            UpdateLastScheduled(schedule.ID, scheduleDateTime.Value);
+                        }
+
+                        foreach (ScheduleDetail scheduleDetail in monthlyScheduleDetails)
                         {
                             CreateTask(schedule, scheduleDateTime.Value);
                         }
