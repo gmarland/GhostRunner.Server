@@ -78,10 +78,6 @@ namespace GhostRunner.Server.SL
                 _log.Error("ProcessTask(): An error occured processing the task", ex);
             }
 
-            _log.Debug("Setting task complete");
-
-            _taskDataAccess.SetTaskComplete(task.ID, Status.Completed);
-
             _log.Debug("Deleting processing location");
 
             int tryCount = 5000;
@@ -105,6 +101,10 @@ namespace GhostRunner.Server.SL
             }
 
             if (deleteError != null) _log.Error("Unable to delete processing location", deleteError);
+
+            _log.Debug("Setting task complete");
+
+            _taskDataAccess.SetTaskComplete(task.ID, Status.Completed);
         }
 
         public IList<Task> ClearHungTasks()

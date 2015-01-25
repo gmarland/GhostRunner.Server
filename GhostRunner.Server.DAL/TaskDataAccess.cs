@@ -157,6 +157,69 @@ namespace GhostRunner.Server.DAL
             }
         }
 
+        public Boolean Delete(long taskId)
+        {
+            Task task = null;
+
+            try
+            {
+                task = _context.Tasks.SingleOrDefault(it => it.ID == taskId);
+            }
+            catch (Exception ex)
+            {
+                _log.Error("SetTaskComplete(" + taskId + "): An error occured retrieving task", ex);
+
+                return false;
+            }
+
+            if (task != null)
+            {
+                List<TaskScript> taskScripts = taskScripts = task.TaskScripts.ToList();
+
+                foreach (TaskScript taskScript in taskScripts)
+                {
+                    List<TaskScriptParameter> taskScriptParameters = taskScript.TaskScriptParameters.ToList();
+
+                    foreach (TaskScriptParameter taskScriptParameter in taskScriptParameters)
+                    {
+                        _context.TaskScriptParameters.Remove(taskScriptParameter);
+                    }
+
+                    _context.TaskScripts.Remove(taskScript);
+                }
+
+                try
+                {
+                    Save();
+                }
+                catch (Exception ex)
+                {
+                    _log.Error("Delete(" + taskId + "): An error occured deleting task scripts", ex);
+                }
+
+                _context.Tasks.Remove(task);
+
+                try
+                {
+                    Save();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    _log.Error("Delete(" + taskId + "): An error occured deleting task", ex);
+
+                    return false;
+                }
+            }
+            else
+            {
+                _log.Info("Delete(" + taskId + "): unable to retrieve task");
+
+                return false;
+            }
+        }
+
         private void Save()
         {
             try
